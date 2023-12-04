@@ -84,10 +84,10 @@ class BharataiConfig(PretrainedConfig):
     def __init__(
         self,
         vocab_size=32000,
-        hidden_size=4096,
+        hidden_size=512,
         intermediate_size=11008,
-        num_hidden_layers=32,
-        num_attention_heads=32,
+        num_hidden_layers=8,
+        num_attention_heads=8,
         num_key_value_heads=None,
         hidden_act="silu",
         max_position_embeddings=16384,
