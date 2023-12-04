@@ -83,7 +83,7 @@ class BharataiConfig(PretrainedConfig):
 
     def __init__(
         self,
-        vocab_size=32000,
+        vocab_size=5000,
         hidden_size=512,
         intermediate_size=11008,
         num_hidden_layers=8,
