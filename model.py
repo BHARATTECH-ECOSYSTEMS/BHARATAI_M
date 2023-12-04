@@ -1,5 +1,5 @@
 # coding=utf-8
-# Copyright 2023 BharatTech Tech Ecosystem Pvt. Ltd. and the HuggingFace Inc. team. All rights reserved.
+# Copyright 2023 BharatTech Tech Ecosystem Pvt.  All rights reserved.
 
 """ PyTorch Bharatai model."""
 import math
@@ -36,8 +36,8 @@ if is_flash_attn_2_available():
 # This makes `_prepare_4d_causal_attention_mask` a leaf function in the FX graph.
 # It means that the function will not be traced through and simply appear as a node in the graph.
 if is_torch_fx_available():
-    if not is_torch_greater_or_equal_than_1_13:
-        import torch.fx
+    
+    import torch.fx
 
     _prepare_4d_causal_attention_mask = torch.fx.wrap(_prepare_4d_causal_attention_mask)
 
@@ -98,7 +98,7 @@ ALL_LAYERNORM_LAYERS.append(BharataiRMSNorm)
 
 
 class BharataiRotaryEmbedding(nn.Module):
-    def __init__(self, dim, max_position_embeddings=2048, base=10000, device=None):
+    def __init__(self, dim, max_position_embeddings=16384, base=10000, device=None):
         super().__init__()
 
         self.dim = dim
@@ -136,7 +136,7 @@ class BharataiRotaryEmbedding(nn.Module):
 class BharataiLinearScalingRotaryEmbedding(BharataiRotaryEmbedding):
     """BharataiRotaryEmbedding extended with linear scaling. Credits to the Reddit user /u/kaiokendev"""
 
-    def __init__(self, dim, max_position_embeddings=2048, base=10000, device=None, scaling_factor=1.0):
+    def __init__(self, dim, max_position_embeddings=16384, base=10000, device=None, scaling_factor=1.0):
         self.scaling_factor = scaling_factor
         super().__init__(dim, max_position_embeddings, base, device)
 
@@ -155,7 +155,7 @@ class BharataiLinearScalingRotaryEmbedding(BharataiRotaryEmbedding):
 class BharataiDynamicNTKScalingRotaryEmbedding(BharataiRotaryEmbedding):
     """BharataiRotaryEmbedding extended with Dynamic NTK scaling. Credits to the Reddit users /u/bloc97 and /u/emozilla"""
 
-    def __init__(self, dim, max_position_embeddings=2048, base=10000, device=None, scaling_factor=1.0):
+    def __init__(self, dim, max_position_embeddings=16384, base=10000, device=None, scaling_factor=1.0):
         self.scaling_factor = scaling_factor
         super().__init__(dim, max_position_embeddings, base, device)
 
