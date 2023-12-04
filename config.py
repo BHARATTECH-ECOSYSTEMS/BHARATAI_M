@@ -78,7 +78,7 @@ class BharataiConfig(PretrainedConfig):
     
     ```"""
 
-    model_type = "Bharatai"
+    model_type = "BharataiForCausalLM"
     keys_to_ignore_at_inference = ["past_key_values"]
 
     def __init__(
